@@ -75,5 +75,6 @@ public class Test02 {
         new ClientThread("Alice").start();
         new ClientThread("Bobby").start();
         new ClientThread("Chris").start();
+        String s = "32";
     }
 }
