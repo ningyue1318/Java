@@ -1,7 +1,7 @@
 public class Test02 {
     static boolean boolValue;
     public static void main(String[] args) {
-        boolValue = 2;
+        boolValue = true;
         if(boolValue){
             System.out.println("Hello,Java!");
         }
