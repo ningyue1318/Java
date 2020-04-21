@@ -35,7 +35,7 @@ public class ArrayQueue{
     }
 
     public static void main(String[] args) {
-        ArrayQueue queue = new ArrayQueue(10);
+        ArrayQueue queue = new ArrayQueue(5);
         queue.enqueue("1");
         queue.enqueue("2");
         queue.enqueue("3");
