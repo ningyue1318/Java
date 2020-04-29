@@ -1,7 +1,5 @@
 package HashTable;
 
-import java.util.HashMap;
-import java.util.Map;
 
 public class HashTable<K, V>{
     private static final int DEFAuLT_INITAL_CAPACITY = 8;
@@ -131,5 +129,9 @@ public class HashTable<K, V>{
                 return;
             }
         }while(e.next!=null);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(3>>2);
     }
 }
