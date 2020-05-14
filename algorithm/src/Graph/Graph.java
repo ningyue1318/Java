@@ -101,6 +101,7 @@ public class Graph {
             System.out.println();
         }
     }
+    
 
     public static void main(String[] args) {
         Graph graph = new Graph(8);
@@ -114,6 +115,7 @@ public class Graph {
         graph.addEdge(4,6);
         graph.addEdge(5,7);
         graph.addEdge(6,7);
-        graph.dfs(0,7);
+        //graph.dfs(0,7);
+        graph.dfs_print();
     }
 }
