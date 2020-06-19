@@ -30,5 +30,8 @@ public class ToolApplication {
         for(ResourceFile2 resourceFile22:resourceFiles2){
             resourceFile22.accept(visitor);
         }
+
+        StringBuilder d = new StringBuilder();
+        d.append("1qw");
     }
 }
