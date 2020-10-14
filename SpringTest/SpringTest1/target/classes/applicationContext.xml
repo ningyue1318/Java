@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       https://www.springframework.org/schema/context/spring-context.xsd">
+
+   <bean id="user" class="com.syn.geekband.chapterbefore3.User" primary="true">
+      <property name="id" value="1"/>
+      <property name="name" value="宁悦"/>
+   </bean>
+
+   <bean id="superUser" class="com.syn.geekband.chapterbefore3.SuperUser" parent="user" >
+      <property name="address" value="杭州"></property>
+   </bean>
+
+   <bean id="objectFactory" class="org.springframework.beans.factory.config.ObjectFactoryCreatingFactoryBean">
+      <property name="targetBeanName" value="user"/>
+   </bean>
+
+   <bean id="userRepository" class="com.syn.geekband.chapterbefore3.UserRepository" autowire="byType">
+   </bean>
+
+</beans>

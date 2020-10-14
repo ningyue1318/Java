@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+   <!--
+    <bean id="accountService" class="com.syn.springDemo.Impl.AccountServiceImpl">
+        <property name="accountDao" ref="accountDao"/>
+    </bean>
+
+    <bean id="accountDao" class="com.syn.springDemo.Impl.AccountDaoImpl">
+        <constructor-arg name="db" ref="db"/>
+    </bean>
+
+
+    <bean id ="db" class="java.util.HashMap"/>
+    -->
+
+   <bean id="user-by-static-method" class="com.syn.geekband.chapterbefore3.User"
+         factory-method="createUser"/>
+   <bean id="user-by-instance-method" factory-bean="userFactory" factory-method="createUser"/>
+
+   <bean id="user-by-factory-bean" class="com.syn.geekband.chapter4.UserFactoryBean"/>
+   <bean id = "userFactory" class="com.syn.geekband.chapter4.UserFactory"/>
+</beans>
