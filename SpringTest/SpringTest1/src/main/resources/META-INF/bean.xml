@@ -5,11 +5,11 @@
         https://www.springframework.org/schema/beans/spring-beans.xsd">
 
    <!--
-    <bean id="accountService" class="com.syn.springDemo.Impl.AccountServiceImpl">
+    <bean id="accountService" class="AccountServiceImpl">
         <property name="accountDao" ref="accountDao"/>
     </bean>
 
-    <bean id="accountDao" class="com.syn.springDemo.Impl.AccountDaoImpl">
+    <bean id="accountDao" class="AccountDaoImpl">
         <constructor-arg name="db" ref="db"/>
     </bean>
 

@@ -1,6 +1,6 @@
 package com.syn.geekband.chapterbefore3;
 
-@Super
+
 public class SuperUser extends User {
     private String address;
 

@@ -1,14 +1,32 @@
 package com.syn.geekband.chapterbefore3;
 
 
+import com.syn.geekband.chapter11.Company;
+
 public class User {
     private Long id;
     private String name;
+    private Company company;
 
+    public Company getCompany() {
+        return company;
+    }
 
+    public void setCompany(Company company) {
+        this.company = company;
+    }
 
     public Long getId() {
         return id;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", company=" + company +
+                '}';
     }
 
     public void setId(Long id) {
@@ -21,14 +39,6 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
     }
 
     public static User createUser(){
