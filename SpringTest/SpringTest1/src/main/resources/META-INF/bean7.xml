@@ -17,6 +17,11 @@
         <constructor-arg ref="user"/>
     </bean>
 
+    <bean id="car" class="com.syn.springApplication.chapter4.Car" init-method="myInit" destroy-method="myDestroy">
+        <property name="brand" value="红旗CA72"/>
+        <property name="maxSpeed" value="200"/>
+    </bean>
+
     <!--
     <bean class="com.syn.geekband.chapter6.UserHolder">
         <property name="user" ref="superUser"/>

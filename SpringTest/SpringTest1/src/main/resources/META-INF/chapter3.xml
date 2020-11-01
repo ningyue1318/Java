@@ -3,15 +3,16 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         https://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/aop
-        https://www.springframework.org/schema/aop/spring-aop.xsd">
-
-
-
+        https://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd">
+<!--
     <bean id ="accountService" class="com.syn.bibiCourse.springAop.AccountServiceImpl"/>
 
     <bean id="logger" class="com.syn.bibiCourse.springAop.Logger"/>
@@ -20,15 +21,18 @@
         <aop:pointcut id="log" expression="execution(public void com.syn.bibiCourse.springAop.AccountServiceImpl.saveAccount())"/>
 
         <aop:aspect id="logAdvice" ref="logger">
-            <!--
             <aop:before method="beforePrintLog" pointcut-ref="log"/>
             <aop:after method="afterPrintLog" pointcut-ref="log"/>
             <aop:after-returning method="afterReturningPrintLog" pointcut-ref="log"/>
             <aop:after-throwing method="afterThrowingPrintLog" pointcut-ref="log"/>
-            -->
             <aop:around method="aroundPrintLog" pointcut-ref="log"/>
         </aop:aspect>
     </aop:config>
+
+-->
+
+    <context:component-scan base-package="com.syn.bibiCourse.springTx.Service"/>
+
 
     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
         <property name="dataSource" ref="dataSource"/>
@@ -40,4 +44,20 @@
         <property name="username" value="root"/>
         <property name="password" value="123456"/>
     </bean>
+
+    <bean id ="txManage" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <tx:advice id="txAdvice" transaction-manager="txManage">
+        <tx:attributes>
+            <tx:method name="*" read-only="false"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <aop:config>
+        <aop:pointcut id="pt" expression="execution(* com.syn.bibiCourse.springTx.Service.UserService.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="pt"/>
+    </aop:config>
+
 </beans>
