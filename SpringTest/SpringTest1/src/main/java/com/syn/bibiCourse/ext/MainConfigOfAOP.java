@@ -101,8 +101,24 @@ import org.springframework.context.annotation.*;
                     拦截器的机制，保证通知方法与目标方法的执行顺序
 
 
-
-
+===========================目标方法的执行=================================
+        容器中保存了组件的代理对象(增强后的对象)，这个对象里保存了详细信息（增强器，目标对象等等）
+        1 CglibAopProxy.intercept()方法，拦截目标方法执行
+        2 根据ProxyFactory对象获取将要执行目标方法的拦截器链。
+        	List<Object> chain = this.advised.getInterceptorsAndDynamicInterceptionAdvice(method, targetClass);
+        	 1 List<Object> interceptorList保存所有的拦截器
+        	 2 遍历所有的增强器，并将其转化为Interceptor
+        	    registry.getInterceptors(advisor);
+        	 3 将增强器转为List<MethodInterceptor>
+        	    如果是MethodInterceptor,直接加入到集合中
+        	    如果不是，使用AdvisorAdapter将增强器转化为MethodInterceptor
+        	    转换完成返回MethodInterceptor数组
+        3 如果没有拦截器链，直接执行目标放啊
+        4 如果有拦截器链，把需要执行的目标对象，目标方法，拦截器链等信息传入创建一个CglibMethodInvocation对象
+            并调用Object retVal = mi.proceed()
+        5 拦截器链的触发过程
+            如果没有拦截器执行目标方法，或者拦截器的索引和拦截器数组-1大小一样（指定到了最后一个拦截器）执行目标方法
+            链式获取每一个拦截器，拦截器执行invoke方法，每一个拦截器会等待下一个拦截器执行完成返回以后再来执行
 
 
 
@@ -111,6 +127,17 @@ import org.springframework.context.annotation.*;
 @ComponentScan(basePackages = "com.syn.bibiCourse.ext")
 @EnableAspectJAutoProxy
 public class MainConfigOfAOP {
+
+    @Bean
+    public MathCalculator calculator(){
+        return new MathCalculator();
+    }
+
+    @Bean
+    public LogAspects logAspects(){
+        return new LogAspects();
+    }
+
     public static void main(String[] args) {
         AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(MainConfigOfAOP.class);
         MathCalculator calculator = ac.getBean(MathCalculator.class);
