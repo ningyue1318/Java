@@ -13,12 +13,12 @@
         http://www.springframework.org/schema/tx
         http://www.springframework.org/schema/tx/spring-tx.xsd">
 <!--
-    <bean id ="accountService" class="com.syn.bibiCourse.springAop.AccountServiceImpl"/>
+    <bean id ="accountService" class="com.syn.bibiCourse.Spring.springAop.AccountServiceImpl"/>
 
-    <bean id="logger" class="com.syn.bibiCourse.springAop.Logger"/>
+    <bean id="logger" class="com.syn.bibiCourse.Spring.springAop.Logger"/>
 
     <aop:config>
-        <aop:pointcut id="log" expression="execution(public void com.syn.bibiCourse.springAop.AccountServiceImpl.saveAccount())"/>
+        <aop:pointcut id="log" expression="execution(public void com.syn.bibiCourse.Spring.springAop.AccountServiceImpl.saveAccount())"/>
 
         <aop:aspect id="logAdvice" ref="logger">
             <aop:before method="beforePrintLog" pointcut-ref="log"/>
@@ -31,7 +31,7 @@
 
 -->
 
-    <context:component-scan base-package="com.syn.bibiCourse.springTx.Service"/>
+    <context:component-scan base-package="com.syn.bibiCourse.Spring.Service"/>
 
 
     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
@@ -56,7 +56,7 @@
     </tx:advice>
 
     <aop:config>
-        <aop:pointcut id="pt" expression="execution(* com.syn.bibiCourse.springTx.Service.UserService.*(..))"/>
+        <aop:pointcut id="pt" expression="execution(* com.syn.bibiCourse.Spring.Service.UserService.*(..))"/>
         <aop:advisor advice-ref="txAdvice" pointcut-ref="pt"/>
     </aop:config>
 
