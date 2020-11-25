@@ -28,4 +28,12 @@
 <!--            <bean class="com.syn.interceptor.MyFirstInterceptor"/>-->
 <!--        </mvc:interceptor>-->
     </mvc:interceptors>
+
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <prop key="java.lang.NullPointerException">error</prop>
+            </props>
+        </property>
+    </bean>
 </beans>
