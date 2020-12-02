@@ -15,6 +15,16 @@ public class Page<T> {
 
     private List<T> items;
 
+    private String url;
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
     public static Integer getPageSize() {
         return PAGE_SIZE;
     }
@@ -63,6 +73,7 @@ public class Page<T> {
                 ", pageSize=" + pageSize +
                 ", pageTotalCount=" + pageTotalCount +
                 ", items=" + items +
+                ", url='" + url + '\'' +
                 '}';
     }
 }

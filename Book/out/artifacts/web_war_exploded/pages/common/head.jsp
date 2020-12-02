@@ -14,6 +14,8 @@
             +request.getServerPort()
             +request.getContextPath()
             +"/";
+
+    pageContext.setAttribute("basePath",basePath);
 %>
 <base href=<%=basePath%>
 <base href="http://localhost:8080/book/">

@@ -20,6 +20,7 @@ public class BookServlet extends BaseServlet{
         int pageNo = req.getParameter("pageNo")==null?1:Integer.parseInt(req.getParameter("pageNo"));
         int pageSize = req.getParameter("pageSize")==null? Page.PAGE_SIZE :Integer.parseInt(req.getParameter("pageSize"));
         Page<Book> page = bookService.page(pageNo,pageSize);
+        page.setUrl("manager/bookServlet?action=page");
         req.setAttribute("page",page);
         req.getRequestDispatcher("/pages/manager/book_manager.jsp").forward(req,resp);
     }
@@ -28,7 +29,8 @@ public class BookServlet extends BaseServlet{
     protected void add(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Book book = WebUtils.copyParamToBean(req.getParameterMap(),new Book());
         bookService.addBook(book);
-        resp.sendRedirect(req.getContextPath()+"/manager/bookServlet?action=list");
+        Page<Book> page = bookService.page(1,Page.PAGE_SIZE);
+        resp.sendRedirect(req.getContextPath()+"/manager/bookServlet?action=page&pageNo="+page.getPageTotal());
 
     }
 
@@ -37,7 +39,9 @@ public class BookServlet extends BaseServlet{
 
         bookService.deleteBookById(id);
 
-        resp.sendRedirect(req.getContextPath()+"/manager/bookServlet?action=list");
+        Page<Book> page = bookService.page(1,Page.PAGE_SIZE);
+
+        resp.sendRedirect(req.getContextPath()+"/manager/bookServlet?action=page&pageNo="+page.getPageTotal());
     }
 
     protected void update(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -45,7 +49,7 @@ public class BookServlet extends BaseServlet{
 
         bookService.updateBook(book);
 
-        resp.sendRedirect(req.getContextPath()+"/manager/bookServlet?action=list");
+        resp.sendRedirect(req.getContextPath()+"/manager/bookServlet?action=page&pageNo="+req.getParameter("pageNo"));
     }
 
     protected void list(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
