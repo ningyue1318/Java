@@ -1,8 +1,4 @@
-<%@ page import="com.syn.dao.Person" %>
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.Map" %>
-<%@ page import="java.util.HashMap" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: hp
   Date: 2020/11/14
@@ -17,9 +13,12 @@
 </head>
 <body>
 <h1>Hello.jsp</h1>
+    <%
+        request.setAttribute("arr",new String[]{"123","456","789"});
+    %>
 
-
-    ${param.username}<br>
-    ${paramValues}
+    <c:forEach items="${arr}" var="i">
+        ${i}<br>
+    </c:forEach>
 </body>
 </html>

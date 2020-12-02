@@ -19,25 +19,22 @@
 	<script type="text/javascript">
 		// 页面加载完成
 		$(function () {
-			// 第一个按钮 【选中添加到右边】
 			$("button:eq(0)").click(function () {
 				$("select:eq(0) option:selected").appendTo($("select:eq(1)"));
-			});
-			// 第二个按钮 【全部添加到右边】
+			})
+
 			$("button:eq(1)").click(function () {
 				$("select:eq(0) option").appendTo($("select:eq(1)"));
-			});
+			})
 
-			// 第三个按钮 【选中删除到左边】
 			$("button:eq(2)").click(function () {
-				$("select:eq(1) option:selected").appendTo($("select:eq(0)"));
-			});
+				alert("点击按钮2")
+			})
 
-			// 第四个按钮 【全部删除到左边】
 			$("button:eq(3)").click(function () {
-				$("select:eq(1) option").appendTo($("select:eq(0)"));
-			});
-		});
+				alert("点击按钮3")
+			})
+		})
 	</script>
 </head>
 <body>

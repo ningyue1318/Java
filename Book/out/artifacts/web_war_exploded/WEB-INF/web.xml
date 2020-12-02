@@ -29,7 +29,6 @@
         <servlet-name>UserServlet</servlet-name>
         <servlet-class>com.syn.web.UserServlet</servlet-class>
     </servlet>
-    
     <servlet-mapping>
         <servlet-name>UserServlet</servlet-name>
         <url-pattern>/userServlet</url-pattern>
@@ -40,7 +39,6 @@
         <servlet-name>BookServlet</servlet-name>
         <servlet-class>com.syn.web.BookServlet</servlet-class>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>BookServlet</servlet-name>
         <url-pattern>/manager/bookServlet</url-pattern>
@@ -50,9 +48,32 @@
         <servlet-name>clientBookServlet</servlet-name>
         <servlet-class>com.syn.web.ClientBookServlet</servlet-class>
     </servlet>
-    
     <servlet-mapping>
         <servlet-name>clientBookServlet</servlet-name>
         <url-pattern>/client/bookServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>KaptchaServlet</servlet-name>
+        <servlet-class>com.google.code.kaptcha.servlet.KaptchaServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>KaptchaServlet</servlet-name>
+        <url-pattern>/kaptcha.jpg</url-pattern>
+    </servlet-mapping>
+    
+    
+    
+    
+    
+    
+    <servlet>
+        <servlet-name>CookieServlet</servlet-name>
+        <servlet-class>com.syn.web.CookieServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>CookieServlet</servlet-name>
+        <url-pattern>/cookieServlet</url-pattern>
     </servlet-mapping>
 </web-app>

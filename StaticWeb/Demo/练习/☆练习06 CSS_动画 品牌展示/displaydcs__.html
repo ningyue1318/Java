@@ -76,34 +76,22 @@ a:hover {
 		// 基本初始状态
 		$("li:gt(5):not(:last)").hide();
 
-		// 给功能的按钮绑定单击事件
 		$("div div a").click(function () {
-			// 让某些品牌，显示，或隐藏
 			$("li:gt(5):not(:last)").toggle();
-			// 判断 品牌，当前是否可见
-			if( $("li:gt(5):not(:last)").is(":hidden") ){
-				// 品牌隐藏的状态 ：1 显示全部品牌    == 角标向下 showmore
+
+			if($("li:gt(5):not(:last)").is(":hidden")){
 				$("div div a span").text("显示全部品牌");
 
 				$("div div").removeClass();
 				$("div div").addClass("showmore");
-
-				// 去掉高亮
-				$("li:contains('索尼')").removeClass("promoted");
-
-			} else {
-				// 品牌可见的状态：2 显示精简品牌	 == 角标向上 showless
+			}else{
 				$("div div a span").text("显示精简品牌");
 
 				$("div div").removeClass();
 				$("div div").addClass("showless");
-
-				// 加高亮
-				$("li:contains('索尼')").addClass("promoted");
 			}
-
 			return false;
-		});
+		})
 	});
 </script>
 </head>

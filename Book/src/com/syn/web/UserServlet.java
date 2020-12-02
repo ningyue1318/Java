@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import static com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY;
+
 public class UserServlet extends BaseServlet {
     private UserService userService = new UserServiceImpl();
 
@@ -28,11 +30,17 @@ public class UserServlet extends BaseServlet {
             req.setAttribute("username",username);
             req.getRequestDispatcher("/pages/user/login.jsp").forward(req,resp);
         }else {
+
+            req.getSession().setAttribute("user",loginUser);
+
             req.getRequestDispatcher("/pages/user/login_success.jsp").forward(req,resp);
         }
     }
 
     protected void regist(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String token =(String)req.getSession().getAttribute(KAPTCHA_SESSION_KEY);
+        req.getSession().removeAttribute(KAPTCHA_SESSION_KEY);
+
         String username = req.getParameter("username");
         String password = req.getParameter("password");
         String email = req.getParameter("email");
@@ -41,7 +49,7 @@ public class UserServlet extends BaseServlet {
         User user = WebUtils.copyParamToBean(req.getParameterMap(),new User());
 
 
-        if("abcde".equalsIgnoreCase(code)){
+        if(token!=null&&token.equalsIgnoreCase(code)){
             if(userService.existUsername(username)){
                 req.setAttribute("msg","用户名已经存在");
                 req.setAttribute("username",username);
@@ -61,6 +69,13 @@ public class UserServlet extends BaseServlet {
             req.getRequestDispatcher("/pages/user/regist.jsp").forward(req,resp);
         }
     }
+
+
+    protected void logout(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+       req.getSession().invalidate();
+       resp.sendRedirect(req.getContextPath());
+    }
+
 
 
 

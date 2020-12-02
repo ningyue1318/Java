@@ -26,44 +26,15 @@
 
 <script type="text/javascript" src="script/jquery-1.7.2.js"></script>
 <script type="text/javascript">
-	
 
-	$(function(){
-		
-		var $divEle = $('div:first');
-		
-		$('#btn01').click(function(){
-			//addClass() - 向被选元素添加一个或多个类
-			$divEle.addClass('redDiv blueBorder');
-		});
-		
-		$('#btn02').click(function(){
-			//removeClass() - 从被选元素删除一个或多个类 
-			$divEle.removeClass();
-		});
-	
-		
-		$('#btn03').click(function(){
-			//toggleClass() - 对被选元素进行添加/删除类的切换操作 
-			$divEle.toggleClass('redDiv')
-		});
-		
-		
-		$('#btn04').click(function(){
-			//offset() - 返回第一个匹配元素相对于文档的位置。
-			var pos = $divEle.offset();
-			console.log(pos);
+	$(function () {
+		var divEle = $("div:first");
 
-			$divEle.offset({
-				top:100,
-				left:50
-			});
-
-		});
-		
-	
-		
+		$("#btn01").click(function () {
+			divEle.addClass("redDiv");
+		})
 	})
+
 </script>
 </head>
 <body>

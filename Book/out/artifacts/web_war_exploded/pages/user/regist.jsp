@@ -7,6 +7,11 @@
 	<%@include file="/pages/common/head.jsp"%>
 	<script>
 		$(function () {
+			$("#code_img").click(function () {
+				this.src="${basePath}kaptcha.jpg?d="+new Date();
+			})
+
+
 			$("#sub_btn").click(function () {
 				var username = $("#username").val();
 				var usernamePatt = /^\w{5,12}$/
@@ -95,8 +100,8 @@
 									<br />
 									<br />
 									<label>验证码：</label>
-									<input class="itxt" type="text" style="width: 150px;" name="code" id="code"/>
-									<img alt="" src="static/img/code.bmp" style="float: right; margin-right: 40px">
+									<input class="itxt" type="text" style="width: 80px;" name="code" id="code"/>
+									<img id ="code_img" alt="" src="kaptcha.jpg" style="float: right; margin-right: 40px;  width:100px; height:30px;">
 									<br />
 									<br />
 									<input type="submit" value="注册" id="sub_btn" />

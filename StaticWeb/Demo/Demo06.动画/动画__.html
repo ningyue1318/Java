@@ -25,21 +25,15 @@
 		$(function(){
 			//显示   show()
 			$("#btn1").click(function(){
-				$("#div1").show(2000,function () {
-					alert("show动画完成 ")
-				});
+				$("#div1").show();
 			});		
 			//隐藏  hide()
 			$("#btn2").click(function(){
-				$("#div1").hide(1000,function () {
-					alert("hide动画 执行完成 ")
-				});
+				$("#div1").hide();
 			});	
 			//切换   toggle()
 			$("#btn3").click(function(){
-				$("#div1").toggle(1000,function () {
-					alert("toggle动画 完成 ")
-				});
+
 			});
 
 			// var abc = function(){
@@ -49,30 +43,24 @@
 
 			//淡入   fadeIn()
 			$("#btn4").click(function(){
-				$("#div1").fadeIn(2000,function () {
-					alert("fadeIn完成 ")
-				});
+
 			});	
 			//淡出  fadeOut()
 			$("#btn5").click(function(){
-				$("#div1").fadeOut(2000,function () {
-					alert("fadeOut完成 ")
-				});
+
 			});	
 			
 			//淡化到  fadeTo()
 			$("#btn6").click(function(){
-				$("#div1").fadeTo(2000,0.5,function () {
-					alert('fadeTo完成 ')
-				});
+
 			});	
 			//淡化切换  fadeToggle()
 			$("#btn7").click(function(){
 				$("#div1").fadeToggle(1000,function () {
-					alert("fadeToggle完成 ")
-				});
-			});	
-		})
+				alert("fadeToggle完成 ")
+			});
+		});
+	})
 </script>
 	
 	</head>

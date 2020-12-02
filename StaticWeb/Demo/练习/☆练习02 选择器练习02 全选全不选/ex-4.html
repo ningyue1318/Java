@@ -5,49 +5,18 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="../../script/jquery-1.7.2.js"></script>
 <script type="text/javascript">
-	
-	$(function(){
-		
-		var $items = $(":checkbox[name=items]");
-		var items = $("[name='items']");
-		//全选按钮
-		$("#checkedAllBtn").click(function(){
-			items.attr("checked",true);
-			$("#checkedAllBox").attr("checked",true);
-		});
-		//全不选按钮
-		$("#checkedNoBtn").click(function(){
-			items.attr("checked",false);
-			$("#checkedAllBox").attr("checked",false);
-		});
-		
-		//反选按钮
-		$("#checkedRevBtn").click(function(){
-			items.each(function(){
+	$(function () {
+		$("#checkedAllBox").click(function () {
+			$(":checkbox").prop("checked",true);
+		})
+
+		$("#checkedRevBtn").click(function () {
+			$(":checkbox[name='items']").each(function () {
 				this.checked = !this.checked;
-			});
-			var flag = $("[name='items']:checked").length==4;
-			$("#checkedAllBox").attr("checked",flag);
-		});
-		
-		//提交按钮
-		$("#sendBtn").click(function(){
-			$(":checkbox[name='items']:checked").each(function(){
-				alert(this.value);
-			});
-		});
-		
-		//全选/全不选复选框
-		$("#checkedAllBox").click(function(){
-			items.attr("checked",this.checked);
-		});
-		
-		//全选/全不选复选框与items状态同步
-		$("[name='items']").click(function(){
-			var flag = $("[name='items']:checked").length==4;
-			$("#checkedAllBox").attr("checked",flag);
-		});
-	});
+			})
+		})
+	})
+
 	
 </script>
 </head>
