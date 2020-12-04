@@ -25,7 +25,5 @@ public abstract class BaseServlet extends HttpServlet {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
-
-
     }
 }
