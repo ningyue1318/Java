@@ -12,6 +12,8 @@ public class JdbcUtils {
 
     private static DruidDataSource dataSource;
 
+    private static ThreadLocal<Connection> conns = new ThreadLocal<Connection>();
+
     static {
         try {
             Properties properties = new Properties();
@@ -25,23 +27,69 @@ public class JdbcUtils {
     }
 
     public static Connection getConnection(){
-        Connection conn = null;
-        try {
-            conn =dataSource.getConnection();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return conn;
-    }
+        Connection conn = conns.get();
 
-    public static void close(Connection conn){
-        if(conn!=null){
+        if(conn == null){
             try {
-                conn.close();
+                conn =dataSource.getConnection();
+
+                conns.set(conn);
+
+                conn.setAutoCommit(false);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
+        return conn;
     }
+
+    public static void commitAndClose(){
+        Connection connection = conns.get();
+        if(connection!=null){
+            try {
+                connection.commit();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }finally {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        conns.remove();
+    }
+
+    public static void rollbackAndClose(){
+        Connection connection = conns.get();
+        if(connection!=null){
+            try {
+                connection.rollback();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }finally {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        conns.remove();
+    }
+
+
+//    public static void close(Connection conn){
+//        if(conn!=null){
+//            try {
+//                conn.close();
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
 
 }

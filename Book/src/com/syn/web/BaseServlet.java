@@ -21,12 +21,9 @@ public abstract class BaseServlet extends HttpServlet {
         try {
             Method method = this.getClass().getDeclaredMethod(action,HttpServletRequest.class,HttpServletResponse.class);
             method.invoke(this,req,resp);
-        } catch (NoSuchMethodException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
 
 

@@ -4,6 +4,7 @@ import com.syn.pojo.Cart;
 import com.syn.pojo.User;
 import com.syn.service.OrderService;
 import com.syn.service.impl.OrderServiceImpl;
+import com.syn.utils.JdbcUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -23,8 +24,8 @@ public class OrderServlet extends BaseServlet{
             return;
         }
         Integer userId = loginUser.getId();
-        String orderId = orderService.createOrder(cart,userId);
 
+        String orderId = orderService.createOrder(cart, userId);
 
         req.getSession().setAttribute("orderId",orderId);
         resp.sendRedirect(req.getContextPath()+"/pages/cart/checkout.jsp");

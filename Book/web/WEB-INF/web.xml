@@ -79,17 +79,35 @@
         <servlet-name>OrderServlet</servlet-name>
         <url-pattern>/orderServlet</url-pattern>
     </servlet-mapping>
+
     
-    
-    
-    
-    <servlet>
-        <servlet-name>CookieServlet</servlet-name>
-        <servlet-class>com.syn.web.CookieServlet</servlet-class>
-    </servlet>
-    
-    <servlet-mapping>
-        <servlet-name>CookieServlet</servlet-name>
-        <url-pattern>/cookieServlet</url-pattern>
-    </servlet-mapping>
+    <filter>
+        <filter-name>ManagerFilter</filter-name>
+        <filter-class>com.syn.filter.ManagerFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>ManagerFilter</filter-name>
+        <url-pattern>/pages/manager/*</url-pattern>
+        <url-pattern>/manager/bookServlet</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>TransactionFilter</filter-name>
+        <filter-class>com.syn.filter.TransactionFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>TransactionFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
+    <error-page>
+        <error-code>500</error-code>
+        <location>/pages/error/error.jsp</location>
+    </error-page>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/pages/error/error404.jsp</location>
+    </error-page>
 </web-app>
