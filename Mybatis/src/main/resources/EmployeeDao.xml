@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.syn.dao.EmployeeDao">
+
+    <select id="getEmpById" resultType="com.syn.bean.Employee">
+        select * from t_employee where id = #{id}
+    </select>
+
+<!--    public int updateEmployee(Employee employee);-->
+<!--    public int deleteEmployee(Integer id);-->
+<!--    public int insertEmployee(Employee employee);-->
+    <update id="updateEmployee">
+        UPDATE t_employee SET empname=#{empName},gender=#{gender},email=#{email} WHERE id=#{id}
+    </update>
+
+    <delete id="deleteEmployee">
+        DELETE FROM t_employee WHERE id = #{id}
+    </delete>
+
+    <insert id="insertEmployee" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO t_employee(empname,gender,email) VALUES(#{empName},#{gender},#{email})
+    </insert>
+
+    <insert id="insertEmployee2">
+        <selectKey order="BEFORE" resultType="integer" keyProperty="id">
+            select max(id)+1 from t_employee
+        </selectKey>
+        INSERT INTO t_employee(id,empname,gender,email) VALUES(#{id},#{empName},#{gender},#{email})
+    </insert>
+
+    <select id="getEmpByIdAndEmpName" resultType="com.syn.bean.Employee">
+        select * from t_employee where id=#{id} and empname=#{empName}
+    </select>
+
+    <select id="getAllEmps" resultType="com.syn.bean.Employee">
+        select * from t_employee
+    </select>
+
+    <select id="getEmpByIdReturnMap" resultType="map">
+        select * from t_employee where id =#{id}
+    </select>
+
+    
+</mapper>
