@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.syn.dao.TeacherDao">
+
+    <select id="getTeacherById" resultMap="teacherMap">
+        select * from t_teacher where id=#{id}
+    </select>
+
+    <resultMap id="teacherMap" type="com.syn.bean.Teacher">
+        <id property="id" column="id"/>
+        <result property="address" column="address"/>
+        <result property="birth" column="birth_date"/>
+        <result property="course" column="class_name"/>
+        <result property="name" column="teacherName"/>
+    </resultMap>
+
+    <select id="getTeacherByCondition" resultMap="teacherMap">
+          select * from t_teacher
+          <trim prefix="where" prefixOverrides="and" suffixOverrides="and">
+              <if test="id!=null">
+                  id>#{id} and
+              </if>
+              <if test="name!=null">
+                  teacherName like #{name} and
+              </if>
+              <if test="birth!=null">
+                  birth_date>#{birth} and
+              </if>
+          </trim>
+    </select>
+
+    <select id="getTeacherByIdIn" resultMap="teacherMap">
+        select * from t_teacher where id IN
+        <foreach collection="ids" item="id_item" separator="," open="(" close=")">
+            #{id_item}
+        </foreach>
+    </select>
+    
+    <update id="updateTeacher">
+        UPDATE t_teacher
+        <set>
+            <if test="name!=null">
+                teacherName = #{name},
+            </if>
+            <if test="course!=null">
+                class_name = #{course},
+            </if>
+            <if test="address!=null">
+                address = #{address},
+            </if>
+            <if test="birth!=null">
+                birth = #{birth}
+            </if>
+        </set>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+
+</mapper>

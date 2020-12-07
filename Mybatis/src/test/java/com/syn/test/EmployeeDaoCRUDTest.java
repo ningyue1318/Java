@@ -1,7 +1,10 @@
 package com.syn.test;
 
 import com.syn.bean.Employee;
+import com.syn.bean.Key;
+import com.syn.bean.Lock;
 import com.syn.dao.EmployeeDao;
+import com.syn.dao.KeyDao;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -86,6 +89,19 @@ public class EmployeeDaoCRUDTest {
         System.out.println(e);
         Employee a = (Employee) e.get(1);
         System.out.println(a.getEmpName());
+        openSession.commit();
+        openSession.close();
+    }
+
+
+    @Test
+    public void test04(){
+        SqlSession openSession = sqlSessionFactory.openSession();
+        KeyDao mapper = openSession.getMapper(KeyDao.class);
+
+        Key keyByIdSimple = mapper.getKeyByIdSimple(1);
+        System.out.println(keyByIdSimple.getKeyName());
+
         openSession.commit();
         openSession.close();
     }

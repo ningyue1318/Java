@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.syn.dao.KeyDao">
+    <select id="getKeyById" resultMap="myKey">
+      select k.id,k.keyname,k.lockid,l.id lid,l.lockName from t_key k LEFT JOIN t_lock l
+       on k.id=l.id WHERE k.id=#{id}
+    </select>
+
+
+    <resultMap id="myKey" type="com.syn.bean.Key">
+        <id property="id" column="id"/>
+        <result property="keyName" column="keyname"/>
+        <association property="lock" javaType="com.syn.bean.Lock">
+            <id property="id" column="id"/>
+            <result property="lockName" column="lockName"/>
+        </association>
+    </resultMap>
+
+
+
+    <select id="getLockById" resultMap="myLock">
+        select k.id,k.keyname,k.lockid,l.id lid,l.lockName from t_key k LEFT JOIN t_lock l
+       on k.lockid=l.id WHERE l.id=#{id}
+    </select>
+
+    <resultMap id="myLock" type="com.syn.bean.Lock">
+        <id property="id" column="lid"/>
+        <result property="lockName" column="lockName"/>
+        <collection property="keys" ofType="com.syn.bean.Key">
+            <id property="id" column="id"/>
+            <result property="keyName" column="keyname"/>
+        </collection>
+    </resultMap>
+
+    <select id="getLockByIdSimple" resultType="com.syn.bean.Lock">
+         select * from t_lock where id=#{id}
+    </select>
+
+    <select id="getKeyByIdSimple" resultMap="myLock2">
+        select * from t_key where id=#{id}
+    </select>
+
+    <resultMap id="myLock2" type="com.syn.bean.Key">
+        <id property="id" column="id"/>
+        <result property="keyName" column="keyname"/>
+        <association property="lock" select="getLockByIdSimple" column="lockid">
+
+        </association>
+    </resultMap>
+
+
+</mapper>
