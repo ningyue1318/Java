@@ -24,5 +24,8 @@
         <mapper resource="EmployeeDao.xml"/>
         <mapper resource="KeyDao.xml"/>
         <mapper resource="TeacherDao.xml"/>
+        <mapper resource="UserDao.xml"/>
+        <mapper resource="AccountDao.xml"/>
+        <mapper resource="RoleDao.xml"/>
     </mappers>
 </configuration>
