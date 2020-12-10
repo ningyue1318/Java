@@ -1,4 +1,4 @@
-package Array;
+package Basis.Array;
 
 public class Array {
     //定义整型数组保存数据

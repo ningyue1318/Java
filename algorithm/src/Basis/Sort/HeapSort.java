@@ -1,4 +1,4 @@
-package Sort;
+package Basis.Sort;
 
 public class HeapSort {
     public static void sort(int [] arr){

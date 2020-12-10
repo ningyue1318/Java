@@ -1,4 +1,4 @@
-package Sort;
+package Basis.Sort;
 
 public class countingSort {
     public static void countingSort(int [] a,int n){

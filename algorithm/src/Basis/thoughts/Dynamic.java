@@ -1,4 +1,4 @@
-package thoughts;
+package Basis.thoughts;
 
 public class Dynamic {
     private int maxW = Integer.MIN_VALUE;

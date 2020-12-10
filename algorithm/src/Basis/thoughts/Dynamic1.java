@@ -1,4 +1,4 @@
-package thoughts;
+package Basis.thoughts;
 
 public class Dynamic1 {
     private int minDist = Integer.MAX_VALUE;

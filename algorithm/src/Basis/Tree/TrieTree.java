@@ -1,4 +1,4 @@
-package Tree;
+package Basis.Tree;
 
 public class TrieTree {
     private TrieNode root = new TrieNode('/');

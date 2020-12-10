@@ -1,4 +1,4 @@
-package HashTable;
+package Basis.HashTable;
 
 
 public class HashTable<K, V>{

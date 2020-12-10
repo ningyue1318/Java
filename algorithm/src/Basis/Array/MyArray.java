@@ -1,6 +1,4 @@
-package Array;
-
-import javafx.beans.binding.ObjectBinding;
+package Basis.Array;
 
 public class MyArray<T>{
     private T[] data;

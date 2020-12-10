@@ -1,4 +1,4 @@
-package thoughts;
+package Basis.thoughts;
 
 public class Dynamic2 {
     private char [] a = "mitcmu".toCharArray();

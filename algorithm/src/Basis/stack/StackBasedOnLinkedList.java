@@ -1,4 +1,4 @@
-package stack;
+package Basis.stack;
 
 public class StackBasedOnLinkedList {
     private Node top = null;

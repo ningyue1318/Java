@@ -1,4 +1,4 @@
-package thoughts;
+package Basis.thoughts;
 
 public class BackTrack {
     private int num =0;

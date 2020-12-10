@@ -1,4 +1,4 @@
-package String;
+package Basis.String;
 
 public class BM {
     private static final int SIZE = 256;

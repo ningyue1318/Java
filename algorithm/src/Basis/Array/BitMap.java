@@ -1,4 +1,4 @@
-package Array;
+package Basis.Array;
 
 public class BitMap {
     private char [] bytes;

@@ -1,4 +1,4 @@
-package Queue;
+package Basis.Queue;
 
 public class ArrayQueue{
     private String [] items;

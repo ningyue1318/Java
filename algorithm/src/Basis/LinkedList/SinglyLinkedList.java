@@ -1,4 +1,4 @@
-package LinkedList;
+package Basis.LinkedList;
 
 public class SinglyLinkedList {
     private Node head = null;

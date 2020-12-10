@@ -1,4 +1,4 @@
-package HashTable;
+package Basis.HashTable;
 
 
 import java.util.HashMap;

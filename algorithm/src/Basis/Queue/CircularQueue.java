@@ -1,4 +1,4 @@
-package Queue;
+package Basis.Queue;
 
 public class CircularQueue {
     private String[] items;

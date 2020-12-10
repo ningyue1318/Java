@@ -1,4 +1,4 @@
-package Array;
+package Basis.Array;
 
 public class SkipList {
     private static final float SKIPLIST_P = 0.5f;
