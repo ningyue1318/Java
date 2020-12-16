@@ -11,7 +11,6 @@
     <title>Title</title>
 </head>
 <body>
-    <a href="account/findAll">测试</a>
-
+    <jsp:forward page="/WEB-INF/pages/main.jsp"></jsp:forward>
 </body>
 </html>

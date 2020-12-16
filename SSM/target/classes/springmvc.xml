@@ -19,10 +19,10 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
+    <mvc:resources location="/css/" mapping="/css/**" />
+    <mvc:resources location="/img/" mapping="/img/**" />
+    <mvc:resources location="/plugins/" mapping="/plugins/**" />
+
+
     <mvc:annotation-driven/>
-
-<!--    <mvc:resources location="/css/" mapping="/css/**" />-->
-<!--    <mvc:resources location="/images/" mapping="/images/**" />-->
-<!--    <mvc:resources location="/js/" mapping="/js/**" />-->
-
 </beans>
