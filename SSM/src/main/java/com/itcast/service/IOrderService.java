@@ -8,4 +8,6 @@ public interface IOrderService {
     List<Orders> findAll() throws Exception;
 
     List<Orders> findAll(int page, int size) throws Exception;
+
+    Orders findById(Integer ordersId) throws Exception;
 }

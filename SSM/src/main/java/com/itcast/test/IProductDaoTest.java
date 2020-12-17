@@ -1,7 +1,9 @@
 package com.itcast.test;
 
 import com.itcast.dao.IProductDao;
+import com.itcast.dao.IUserDao;
 import com.itcast.domain.Product;
+import com.itcast.domain.UserInfo;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -14,16 +16,9 @@ public class IProductDaoTest {
 
     @Test
     public void save() throws Exception {
-        Product p = new Product();
-        p.setCityName("广州");
-        p.setProductName("itcast-004");
-        p.setProductNum("1000");
-        p.setProductDesc("北京");
-        p.setProductStatus(1);
-        p.setDepartureTime(new Date());
-        p.setProductName("123");
         ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
-        IProductDao dao = ac.getBean(IProductDao.class);
-        dao.save(p);
+        IUserDao dao = ac.getBean(IUserDao.class);
+        UserInfo u=dao.findByUsername("admin");
+        System.out.println(u);
     }
 }
