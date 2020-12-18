@@ -18,7 +18,13 @@ public class IProductDaoTest {
     public void save() throws Exception {
         ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
         IUserDao dao = ac.getBean(IUserDao.class);
-        UserInfo u=dao.findByUsername("admin");
+        UserInfo u = new UserInfo();
+        u.setUsername("123");
+        u.setPassword("123");
+        u.setEmail("123@qq");
+        u.setPhoneNum("123456");
+        u.setStatus(1);
+        dao.save(u);
         System.out.println(u);
     }
 }
