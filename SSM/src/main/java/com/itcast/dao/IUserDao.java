@@ -1,5 +1,6 @@
 package com.itcast.dao;
 
+import com.itcast.domain.Role;
 import com.itcast.domain.UserInfo;
 import org.apache.ibatis.annotations.*;
 
@@ -43,4 +44,11 @@ public interface IUserDao {
             @Result(property = "roles",column = "id",javaType = java.util.List.class,many=@Many(select = "com.itcast.dao.IRoleDao.findRoleByUser")),
     })
     UserInfo findById(Integer id) throws Exception;
+
+
+    @Select("select * from roles where id not in (select roleId from users_roles where userId=#{userId})")
+    List<Role> findOtherRoles(Integer userId);
+
+    @Insert("insert into users_roles(userId,roleId) value(#{userId},#{id})")
+    void addRoleToUser(@Param("userId") Integer userId,@Param("id") Integer id);
 }

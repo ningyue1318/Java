@@ -1,10 +1,12 @@
 package com.itcast.controller;
 
+import com.itcast.domain.Role;
 import com.itcast.domain.UserInfo;
 import com.itcast.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -42,6 +44,23 @@ public class UserController {
         return "redirect:/user/findAll.do";
     }
 
+    @RequestMapping("/findUserByIdAndAllRole.do")
+    public ModelAndView findUserByIdAndAllRole(@RequestParam(name="id",required = true) Integer userId) throws Exception {
+        UserInfo userInfo = userService.findById(userId);
+        List<Role> roles = userService.findOtherRoles(userId);
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("user",userInfo);
+        mv.addObject("roleList",roles);
+        mv.setViewName("user-role-add");
+        return mv;
+    }
+
+    @RequestMapping("/addRoleToUser.do")
+    public String addRoleToUser(@RequestParam(name="userId",required = true) Integer userId,
+                                @RequestParam(name ="ids",required = true) Integer [] rolesIds) throws Exception {
+        userService.addRoleToUser(userId,rolesIds);
+        return "redirect:/user/findAll.do";
+    }
 
     @RequestMapping("showAdd.do")
     public String showAdd(){
