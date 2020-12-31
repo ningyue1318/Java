@@ -1,15 +1,20 @@
 package com.syn.config;
 
+import com.syn.Interceptor.LoginInterceptor;
 import com.syn.bean.Pet;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.util.UrlPathHelper;
+
+import javax.sql.DataSource;
 
 @Configuration(proxyBeanMethods = false)
 public class WebConfig implements WebMvcConfigurer {
@@ -45,6 +50,13 @@ public class WebConfig implements WebMvcConfigurer {
                 return null;
             }
         });
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new LoginInterceptor())
+                .addPathPatterns("/**")
+                .excludePathPatterns("/","/login","/css/**","/fonts/**","/images/**","/js/**");
     }
 }
 
