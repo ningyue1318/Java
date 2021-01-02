@@ -11,6 +11,7 @@ public class Jz22 {
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
         while(!queue.isEmpty()){
+
             TreeNode temp = queue.remove();
             returnData.add(temp.val);
             if(temp.left!=null) queue.add(temp.left);
