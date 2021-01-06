@@ -70,7 +70,7 @@ public class LoginController {
         }
     }
 
-    @RequestMapping(value = "/logout/",method = {RequestMethod.GET,RequestMethod.POST})
+    @RequestMapping(value = "/logout",method = {RequestMethod.GET,RequestMethod.POST})
     public String logout(@CookieValue("ticket") String ticket){
         userService.logout(ticket);
         return "redirect:/";

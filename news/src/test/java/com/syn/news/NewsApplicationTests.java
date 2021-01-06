@@ -1,11 +1,10 @@
 package com.syn.news;
 
+import com.syn.news.Dao.CommentDao;
 import com.syn.news.Dao.LoginTicketDao;
 import com.syn.news.Dao.NewsDao;
 import com.syn.news.Dao.UserDao;
-import com.syn.news.Model.LoginTicket;
-import com.syn.news.Model.News;
-import com.syn.news.Model.User;
+import com.syn.news.Model.*;
 
 
 import org.junit.Assert;
@@ -31,6 +30,9 @@ public class NewsApplicationTests {
     @Autowired
     LoginTicketDao loginTicketDAO;
 
+    @Autowired
+    CommentDao commentDao;
+
 
     @Test
     public void initNews(){
@@ -46,9 +48,23 @@ public class NewsApplicationTests {
 //
 //            loginTicketDAO.updateStatus(ticket.getTicket(), 2);
 //        }
+//
+//        Assert.assertEquals(4, loginTicketDAO.selectByTicket("TICKET4").getUserId());
+//        Assert.assertEquals(2, loginTicketDAO.selectByTicket("TICKET5").getStatus());
+//        for(int i=3;i<11;i++){
+//            for(int j = 0; j < 3; ++j) {
+//                Comment comment = new Comment();
+//                comment.setUserId(i+1);
+//                comment.setCreatedDate(new Date());
+//                comment.setStatus(0);
+//                comment.setContent("这里是一个评论啊！" + String.valueOf(j));
+//                comment.setEntityId(i+10);
+//                comment.setEntityType(EntityType.ENTITY_NEWS);
+//                commentDao.addComment(comment);
+//            }
+//        }
 
-        Assert.assertEquals(4, loginTicketDAO.selectByTicket("TICKET4").getUserId());
-        Assert.assertEquals(2, loginTicketDAO.selectByTicket("TICKET5").getStatus());
-    }
+        Assert.assertNotNull(commentDao.selectByEntity(13,EntityType.ENTITY_NEWS).get(0));
+     }
 
 }

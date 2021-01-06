@@ -12,7 +12,7 @@ public interface UserDao {
     @Insert("insert into `user` (`name`,`password`,salt,head_url) values (#{name},#{password},#{salt},#{headUrl})")
     int addUser(User user);
 
-    @Select("select name,password,salt,head_url from `user` where id = #{id}")
+    @Select("select id,name,password,salt,head_url from `user` where id = #{id}")
     User selectById(int id);
 
     @Update("update `user` set password=#{password} where id = #{id}")

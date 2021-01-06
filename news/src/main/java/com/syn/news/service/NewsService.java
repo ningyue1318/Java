@@ -20,6 +20,13 @@ public class NewsService {
     private NewsDao newsDao;
 
 
+
+    public News getById(int newsId) {
+        return newsDao.getById(newsId);
+    }
+
+
+
     public int addNews(News news){
         newsDao.addNews(news);
         return news.getId();
@@ -43,6 +50,14 @@ public class NewsService {
         String fileName = UUID.randomUUID().toString().replaceAll("-","")+"."+fileExt;
         Files.copy(file.getInputStream(),new File(ToutiaoUtil.IMAGE_DIR+fileName).toPath(), StandardCopyOption.REPLACE_EXISTING);
         return ToutiaoUtil.TOUTIAO_DOMAIN+"image?name="+fileName;
+    }
+
+    public int updateCommentCount(int id, int count) {
+        return newsDao.updateCommentCount(id, count);
+    }
+
+    public int updateLikeCount(int id, int count) {
+        return newsDao.updateLikeCount(id, count);
     }
 
 }
