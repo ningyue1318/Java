@@ -1,5 +1,9 @@
 package com.syn.news.controller;
 
+import com.syn.news.async.EventHandler;
+import com.syn.news.async.EventModel;
+import com.syn.news.async.EventProducer;
+import com.syn.news.async.EventType;
 import com.syn.news.service.UserService;
 import com.syn.news.util.ToutiaoUtil;
 import org.apache.ibatis.annotations.Mapper;
@@ -17,6 +21,9 @@ public class LoginController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private EventProducer eventProducer;
 
     @RequestMapping(value = "/reg/",method = {RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
@@ -60,6 +67,10 @@ public class LoginController {
                 if(remember>0){
                     cookie.setMaxAge(3600*24*5);
                 }
+                eventProducer.fireEvent(new EventModel(EventType.LOGIN)
+                        .setActorId((int)map.get("userId"))
+                        .setExt("username","牛客")
+                        .setExt("eamil","ningyue@qq.com"));
                 return ToutiaoUtil.getJSONString(0,"登录成功");
             }else{
                 return ToutiaoUtil.getJSONString(1,map);

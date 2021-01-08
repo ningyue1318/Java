@@ -7,6 +7,8 @@ import com.syn.news.Dao.UserDao;
 import com.syn.news.Model.*;
 
 
+import com.syn.news.util.JedisAdapter;
+import org.apache.commons.lang.builder.ToStringBuilder;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,6 +34,9 @@ public class NewsApplicationTests {
 
     @Autowired
     CommentDao commentDao;
+
+    @Autowired
+    JedisAdapter jedisAdapter;
 
 
     @Test
@@ -66,5 +71,21 @@ public class NewsApplicationTests {
 
         Assert.assertNotNull(commentDao.selectByEntity(13,EntityType.ENTITY_NEWS).get(0));
      }
+
+
+     @Test
+    public void testObject(){
+        User user = new User();
+        user.setHeadUrl("www.baidu.com");
+        user.setName("user1");
+        user.setPassword("pwd");
+        user.setSalt("salt");
+        jedisAdapter.setObject("user",user);
+
+        User u = jedisAdapter.getObject("user",User.class);
+        System.out.println(u);
+     }
+
+
 
 }
